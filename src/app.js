@@ -24,7 +24,8 @@ app.post("/api/v1/details",(req,res)=>{
                     number};
   userDetails.push(addProduct);
   fs.writeFileSync(`${__dirname}/data/userDetails.json`,JSON.stringify(userDetails));
-  res.status(201).send({
+  res.status(201)
+  res.send({
     status: "Success",
     message: "User registered successfully",
     data: {

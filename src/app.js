@@ -6,7 +6,6 @@ const app = express();
 const userDetails = JSON.parse(
   fs.readFileSync(`${__dirname}/data/userDetails.json`)
 );
-console.log(userDetails, userDetails.length);
 
 //Middlewares
 app.use(express.json());
@@ -14,17 +13,17 @@ app.use(express.json());
 // Write POST endpoint for registering new user
 app.post("/api/v1/details",(req,res)=>{
   const {name, mail, number} = req.body;
-  if(!name||!mail||!number)
-  {
-    return res.status(400).send({error:"Bad Request"})
-  }
+  // if(!name||!mail||!number)
+  // {
+  //   return res.status(400).send({error:"Bad Request"})
+  // }
   const addProduct={id:userDetails.length+1,
                     name,
                     mail,
                     number};
   userDetails.push(addProduct);
   fs.writeFileSync(`${__dirname}/data/userDetails.json`,JSON.stringify(userDetails));
-  res.status(201)
+  res.status(201);
   res.send({
     status: "Success",
     message: "User registered successfully",
